@@ -1,17 +1,8 @@
-data:
-  image: ubuntu:14.04
-  volumes:
-    - /var/lib/postgresql/data
-    - /usr/local/taiga/media
-    - /usr/local/taiga/static
-    - /usr/local/taiga/logs
 db:
   image: postgres
   environment:
     POSTGRES_USER: taiga
     POSTGRES_PASSWORD: password
-  volumes_from:
-    - data
 taigaback:
   image: htdvisser/taiga-back
   hostname: dev.example.com
@@ -24,14 +15,10 @@ taigaback:
     EMAIL_HOST_PASSWORD: yourpassword
   links:
     - db:postgres
-  volumes_from:
-    - data
 taigafront:
   image: htdvisser/taiga-front-dist
   hostname: dev.example.com
   links:
     - taigaback
-  volumes_from:
-    - data
   ports:
     - 0.0.0.0:80:80
