@@ -1,5 +1,5 @@
 data:
-  image: ubuntu:14.04
+  image: tianon/true
   volumes:
     - /var/lib/postgresql/data
     - /usr/local/taiga/media
